@@ -20,7 +20,7 @@
   </head>
   <body>
     <div>
-      <h1>This is the title of the page</h1>
+      <h1 onclick ="makeItClickable(event)">This is the title of the page</h1>
       <h2>This is the subtitle of the page</h2>
     </div>
 
@@ -54,13 +54,13 @@
       </div>
     </div>
 
-    <div>
+    <footer onclick= "changeFooterText()">
       <p>And this text is just for the exercise too!</p>
       <h2 style="color: red">
         Save this page on your computer and open it with VSCode to get the
         questions!
       </h2>
-    </div>
+    </footer>
     <script>
       /* EXERCISE 1
        Write a function for changing the title of the document in something else.
@@ -68,22 +68,19 @@
 
       const changeTitle = function (newTitle) {
         //
-        changeTitleNode = document.querySelector('h1')
-        changeTitleNode.innerHTML = newTitle
-        return
+        document.querySelector('h1').innerHTML = newTitle
       };
-      changeTitle("Javascript")
-
+      changeTitle("rajib")
       /* EXERCISE 2
        Write a function for changing the class of the title of the page in "myHeading".
       */
 
       const addClassToTitle = function () {
         //
-        let addClassToTitleNode = document.querySelectorAll('h1')
-        addClassToTitleNode[0].classlist.add("myHeading")
+        let addClassToTitleNode = document.querySelector('h1')
+        addClassToTitleNode.classList.add("myHeading")
       };
-      addClassToTitle()
+      addClassToTitle();
 
       /* EXERCISE 3
        Write a function for changing the text of only the p which are children of a div.
@@ -92,12 +89,14 @@
       const changePcontent = function (change) {
         let changePcontentNode = document.querySelector("div p")
         changePcontentNode.innerHTML= change
+        
         // let changePcontentNode = document.getElementsByTagName("p")
         // for(let i = 0; i < changePcontentNode.length; i ++){
         //     changePcontentNode[i].innerHTML = change}
         
-      };
-      changePcontent("I have changed this paragraph")
+      }; 
+      changePcontent("hello there")
+      
 
       /* EXERCISE 4
        Write a function for changing the href property of every link to https://www.google.com
@@ -106,13 +105,10 @@
       const changeUrls = function () {
         //changin url in href
         // let changeUrlsNode =  document.queryselectorAll("a")
-       let changeUrlsNode = document.getElementByTag('a')
-        for(let i = 0; i < changeUrlsNode.length; i++){
-            changeUrlsNode[i].classlist.href = "https://www.google.com"
-       
-       
-        }
+       let changeUrlsNode = document.querySelector('a')
+            changeUrlsNode.href = "https://www.google.com"
       };
+      
       changeUrls()
 
       /* EXERCISE 5
@@ -120,9 +116,10 @@
       */
 
       const addToTheSecond = function () {
-        //
-        let addToTheSecondNode = document.getElementsById("secondList")
-        addToTheSecondNode.innerHTML = "<li>4th</li>"
+        //add new list items
+        let addToTheSecondNode = document.getElementById("secondList")
+        addToTheSecondNode.innerHTML += "<li>4th</li>"
+
       };
       addToTheSecond()
 
@@ -133,18 +130,21 @@
       const addParagraph = function (content) {
         //
 
-        let addParagraphNode = document.getElementsByTagName("div")
-        addParagraphNode[0].classlist.innerHTML = content
-      };
+        let addParagraphNode = document.getElementsByTagName("div")[0]
+        addParagraphNode.innerHTML += `<p>${content}</p>`
       newPara = "This is the second paragraph in the first div I have added through function"
-      addParagraph(newPara)
+    }
+    let newPara = "1223456789"
+    addParagraph(newPara)
       /* EXERCISE 7
        Write a function for making the first unordered list disappear.
       */
 
       const firstUlDisappear = function () {
-        //
+     let paintItGreenNode = document.querySelector("ul")
+        paintItGreenNode.style.display = "none"
       };
+      firstUlDisappear()
 
       /* EXERCISE 8
        Write a function for making the background of every unordered list green.
@@ -152,19 +152,20 @@
 
       const paintItGreen = function () {
         //
-        let paintItGreenNode = document.getElementsByTagName("ul")
-        for(let i = o; i < paintItGreenNode.length ;i++){
-            
+        let paintItGreenNode = document.querySelectorAll("ul")
+        for(let i = 0; i < paintItGreenNode.length; i++){
+            paintItGreenNode[i].style.backgroundColor = "green"
         }
-     
-      };
-
+        };
+        paintItGreen();
       /* EXERCISE 9
        Make the heading of the page change color every time the user clicks on it.
       */
-
-      const makeItClickable = function () {
+   
+      const makeItClickable = function (eventData) {
         //
+        let makeItCkickableNode = document.querySelector('h1')
+        makeItCkickableNode.classList.toggle ("myHeading")
       };
 
       /* EXERCISE 10
@@ -173,26 +174,31 @@
 
       const changeFooterText = function () {
         //
-      };
-
+       let footer = document.querySelector("footer")
+       footer.innerText = "fake address"
+    };
+    
       /* EXERCISE 11
        Attach an event listener to the input field in the page for console logging its value just after any keystroke.
       */
 
       const inputField = document.getElementById("input-field");
-      // ...
+      inputField.onkeydown = function(event){
+          console.log(event.target.value)
+      }
 
       /* EXERCISE 12
        Create a welcome alert message when the page successfully loads.
       */
 
       window.onload = function () {
+          alert("Wel Come")
         //
       };
 
       /* EXERCISE 13
        Use HTML5 tags to properly provide semantic meaning to the different portions of the page.
-      */
+      */ 
     </script>
   </body>
 </html>
